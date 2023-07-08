@@ -69,20 +69,20 @@ A DBMS as the name suggests is a software system that allows to efficiently mana
 
 Now let me talk about how the curriculum is structured. We will be having 11 live classes, followed by a contest. In the live classes we are going to cover everything that is important for you for interviews as well as day to day job. Having said that, as I mentioned that Databases are  avery vast field, attached with every live class you will be able to see a set of recorded videos curated for you for extra learning you can gain. Those videos will mostly be around theoretical concepts behind databases that are not much asked in interviews much nor used at day to day job, but good to know. Sometimes these videos will be on solving extra problems for a particular SQL Topic. You can go through those videos if you want to gain deeper understanding but aren't mandatory to solve assignments or clear contest.
 
-| S.No | Lecture Title | Associated Recordings |
-| --- | --- | --- |
-| 1 | Introduction to Databases and SQL | SQL Data Types |
-| 2 | CRUD | SQL Built-In Functions |
-| 3 | Joins | Extra Problem Solving |
-| 4 | Aggregate Queries | - |
-| 5 | Subqueries and Views | Procedures and Triggers |
-| 6 | SQL Miscelleneous Problem Solving | - |
-| 7 | Indexes | B and B+ Trees |
-| 8 | Transactions | Query Optimization |
-| 9 | Schema Design - 1 | ER Diagrams |
-| 10 | Schema Design - 2 | Database Normalization Forms |
-| 11 | Window Functions | - |
-| CONTEST | - | - |
+| S.No | Lecture Title |
+| --- | --- |
+| 1 | Introduction to Databases and SQL |
+| 2 | CRUD |
+| 3 | Joins |
+| 4 | Aggregate Queries |
+| 5 | Subqueries and Views |
+| 6 | SQL Miscelleneous Problem Solving |
+| 7 | Indexes |
+| 8 | Transactions |
+| 9 | Schema Design - 1 |
+| 10 | Schema Design - 2 |
+| 11 | Window Functions |
+| CONTEST | - |
 
 I hope this excites you for your learning journey in this module and I wish you are able to make the most out of it. 
 
