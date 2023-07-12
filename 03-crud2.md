@@ -7,7 +7,7 @@
  - Join 
 
 
-#### Delete
+### Delete
 
 ```sql
 DELETE FROM table_name WHERE conditions;
@@ -37,11 +37,11 @@ for each row in film:
 
 There is a minor advance thing about DELETE which we shall talk about along with Joins in the next class. So, don't worry about it for now.
 
-#### Delete vs Truncate vs Drop
+### Delete vs Truncate vs Drop
 
 There are two more commands which are used to delete rows from a table. They are `TRUNCATE` and `DROP`. Let's discuss them one by one.
 
-##### Truncate
+#### Truncate
 
 The command looks as follows:
 
@@ -53,7 +53,7 @@ The above query will delete all the rows from the `film` table. TRUNCATE command
 
 >Note: It also resets the primary key ID. For example, if the highest ID in the table before truncating was 10, then the next row inserted after truncating will have an ID of 1.
 
-##### Drop
+#### Drop
 
 The command looks as follows:
 
@@ -85,7 +85,7 @@ DROP:
 Rollback to be discussed in transactions class. Note that there is no undo in SQL queries once the query is completely committed. 
 
 
-#### LIKE Operator
+### LIKE Operator
 
 LIKE operator is one of the most important and frequently used operator in SQL. Whenever there is a column storing strings, there comes a requirement to do some kind of pattern matching. Example, assume Scaler's database where we have a `batches` table with a column called `name`. Let's say we want to get the list of `Academy` batches and the rule is that an Academy batch shall have `Academy` somewhere within the name. How do we find those? We can use the `LIKE` operator for this purpose. Example:
 
@@ -109,7 +109,7 @@ Let's talk about how the `LIKE` operator works. The `LIKE` operator works with t
 6. LIKE 'c%t' will match "cat", "chart", "connect", "cult", etc. but not "wildcat", "domesticcat", "caterpillar", "category".
 
 
-#### COUNT
+### COUNT
 
 Count function takes the values from a particular column and returns the number of values in that set. Umm, but don't you think it will be exactly same as the number of rows in the table? Nope. Not true. Aggregate functions only take not null values into account. So, if there are any null values in the column, they will not be counted.
 
@@ -138,7 +138,7 @@ table = []
 count = 0
 
 for row in table:
-    if row[batch_id]:
+    if row[batch_id] is not null:
         count += 1
 
 print(count)
@@ -155,7 +155,7 @@ SELECT COUNT(batch_id), batch_id FROM students;
 
 This will be an invalid query. Because, you are trying to print the values of `batch_id` column as well as the count of `batch_id` column. But, you can only print the count of `batch_id` column.
 
-#### LIMIT Clause
+### LIMIT Clause
 
 And now let's discuss the last clause for the day. LIMIT clause allows us to limit the number of rows returned by a query. Example:
 
@@ -206,7 +206,7 @@ SELECT * FROM film ORDER BY title LIMIT 10;
 The above query will return 10 rows from the `film` table in ascending order of the `title` column.
 
 
-#### ORDER BY Clause
+### ORDER BY Clause
 
 Now let's discuss another important clause. ORDER BY clause allows to return values in a sorted order. Example:
 
@@ -261,7 +261,7 @@ return filtered_answer
 
 If you see, the `ORDER BY` clause is applied after the `WHERE` clause. So, first the rows are filtered based on the `WHERE` clause and then they are sorted based on the `ORDER BY` clause. And only after that are the columns that have to be printed taken out. And that's why you can sort based on columns not even in the `SELECT` clause.
 
-##### ORDER BY Clause with DISTINCT keyword
+#### ORDER BY Clause with DISTINCT keyword
 
 If you also have DISTINCT in the SELECT clause, then you can only sort by columns that are present in the SELECT clause. Example:
 
@@ -283,7 +283,7 @@ SELECT DISTINCT title FROM film ORDER BY release_year;
 
 The above query will return all the distinct titles from the `film` table. But which `release_year` should be used to sort them? There can be multiple `release_year` for a particular `title`. So, the results will be ambiguous.
 
-#### Joins
+### Joins
 
 Every SQL query we had written till now was only finding data from 1 table. Most of the queries we had written in the previous classes were on the `film` table where we applied multiple filters etc. But do you think being able to query data from a single table is enough? Let's take a scenario of Scaler. Let's say we have 2 tables as follows in the Scaler's database:
 
