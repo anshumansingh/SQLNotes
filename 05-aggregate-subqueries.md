@@ -57,7 +57,7 @@ Note that, we can only use the columns in SELECT which are present in Group By b
 5. Order by, limit, offset. 
 ```
 
-#### Examples
+### Examples
 
 ***Q1: Print the name of every actor (first_name, last_name) and with that print the number of films they have acted in.***
 
@@ -79,7 +79,7 @@ GROUP BY a.actor_id
 SELECT userid, AVG(attended) FROM user_classes GROUP BY userid
 ```
 
-#### Group by on multiple columns
+### Group by on multiple columns
 
 **Table: companies_users**
 
@@ -159,7 +159,7 @@ SELECT * FROM employees WHERE salary > (SELECT AVG(salary) FROM employees)
 As you can see, in SQL, it's possible to place a SQL query inside another query. This inner query is known as a subquery.
 In a subquery, the outer query's result depends on the result set of the inner subquery. That's why subqueries are also called nested queries.
 
-#### More examples
+### More examples
 
 ***Q: Find all employees who make more salary than their department average.***
 
