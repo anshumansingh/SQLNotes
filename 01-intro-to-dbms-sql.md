@@ -73,15 +73,14 @@ Now let me talk about how the curriculum is structured. We will be having 11 liv
 | --- | --- |
 | 1 | Introduction to Databases and SQL |
 | 2 | CRUD |
-| 3 | Joins |
-| 4 | Aggregate Queries |
-| 5 | Subqueries and Views |
-| 6 | SQL Miscelleneous Problem Solving |
-| 7 | Indexes |
-| 8 | Transactions |
-| 9 | Schema Design - 1 |
-| 10 | Schema Design - 2 |
-| 11 | Window Functions |
+| 3 | CRUD-2 and Joins |
+| 4 | Joins - 2 |
+| 5 | Aggregate and Subqueries |
+| 6 | Indexes |
+| 7 | Transactions |
+| 8 | Schema Design - 1 |
+| 9 | Schema Design - 2 |
+| 10 | Views and Window Functions |
 | CONTEST | - |
 
 I hope this excites you for your learning journey in this module and I wish you are able to make the most out of it. 
