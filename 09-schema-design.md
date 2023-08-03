@@ -428,21 +428,24 @@ Let's approach this problem as one should in an interview.
  - Use case 1: Log IN. 
 
 ```sql
-SELECT password FROM users WHERE email = xyz```
+SELECT password FROM users WHERE email = xyz
+```
 
 Index on `email` in `users`
 
  - Get all profiles for a given user
 
 ```sql
-SELECT id, name, profile_type_id FROM profiles WHERE user_id = xyz ```
+SELECT id, name, profile_type_id FROM profiles WHERE user_id = xyz 
+```
 
 Index on `user_id` in `profiles`
 
  - Recently played videos
 
 ```sql
-SELECT video_id FROM video_profiles WHERE profile_id = xyz AND watch_status = 2 ORDER BY last_watched_ts DESC LIMIT 10```
+SELECT video_id FROM video_profiles WHERE profile_id = xyz AND watch_status = 2 ORDER BY last_watched_ts DESC LIMIT 10
+```
 
 Index on (profile_id, watch_status)
 
