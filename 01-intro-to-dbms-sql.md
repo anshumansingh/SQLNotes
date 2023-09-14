@@ -92,6 +92,31 @@ Welcome back after the break. Hope you had a good rest and had some water, etc. 
 
 Correct! Often one of the easiest and most intuitive way to store data can be in forms of tables. Example for the mentioned use case, I may create a table with 3 columns: name, attendance, psp and fill values for each of my students there. This is very intuitive and simple and is also how relational databases work.
 
+## Relational Model & Data Model
+
+Data Model is nothing but a collection/series of concepts that are used to describe the data in DataBase. In short it is how are we representing the data or modelling the data such that it will be understood to explain. If we represent or model a data in form of nodes and each node link to others where it follows a hierarchy like the top node is a root node and it has children and that children also have children like a *tree data structure* then it will be a Hierarchial Data Model.
+
+Similarly,If we represent the data as tabels then it is Relational Data Model. Now we will learn about Relational Data Model:
+
+1. Complete data is represented as multiple relations/tables that are related to each other. Each table/relation is a representation of a particular **Entity**.
+
+2. In mathematical model a RELATION is know as *SET of TUPLES*, so in terms of TABLE it is the *collection of row*. If we compare both the definitions of REALTION & TABLE, Tuple = row and Set = Collections where the order is not important. This is very important to understand because in this model *Never assume the Ordering* as SET doesnt follow order, means when we write any SQL query to get certain rows, we should never expect the answer in the exact order we inserted rows of data into a Table. So please do check the difference between SET and TUPLE below. Similarly order of columns also doesnot matter in this data model as we cannot expect the exact order of columns when we write an SQL query.
+
+    ### difference between SET vs List
+    As per above definition, we will see what is SET and what is List as RELATION is set of Tuples not List of Tuples:
+
+    1. In Set order doesn't matter but in List order do matters
+       ex:  {a,b} == {b,a} => SET
+            [a,b] != [b,a] => List
+    2. A Set doesn't have duplication
+        ex: {a,b,a} == {a,b} => SET
+            [a,b,a] != [a,b] => List
+3. value in each cell is *Atomic* . No multivalue values(like lists,set,JSON etc) are allowed.
+
+4. Each row is unique. As Relational model is nothing but representing everything in SET.
+
+so now we will see what are different databases that exist.
+
 ### Relational Databases
 
 Relational Databases allow you to represent a database as a collection of multiple related tables. Each table has a set of columns and rows. Each row represents a record and each column represents a field. Example, in the above case, I may have a table with 3 columns: name, attendance, psp and fill values for each of my students there. Let's learn some properties of relational databases.
@@ -114,7 +139,9 @@ Correct. Similarly, atomic means indivisible. So, in a relational database, ever
 
 Now that we have learnt about relational databases, let's talk about non-relational databases. Non-relational databases are those databases that don't follow the relational model. They don't store data in form of tables. Instead, they store data in form of documents, key-value pairs, graphs, etc. In the DBMS module, we will not be talking about them. We will talk about them in the HLD Module. 
 
-In the DBMS module, our goal is to cover the working of relational databases and how to work with them, that is via SQL queries. 
+In the DBMS module, our goal is to cover the working of relational databases and how to work with them, that is via SQL queries. But before discussing about DBMS we will discuss about the below things.
+
+
 
 ## Keys in Relational Databases
 
