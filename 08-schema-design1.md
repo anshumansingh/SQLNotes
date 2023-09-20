@@ -65,16 +65,16 @@ Let's say we want to store classes and their instructor. Instead of creating 2 s
 | 4 | SQL-1 | 6 | Ayush | ayush@abcd.com | 
 
 This has the following problems:
- - Update problem: If name for Anshuman needs to be updated, it has to be updated in all 3 rows containing Anshuman. Missing even a single row causes inconsistency. 
- - Delete problem: If you delete the class #4, you end up loosing all infomation about the instructor Ayush. 
- - Insert problem: If a new instructor has been onboarded, there is no way to record their information. I cannot create a row with dummy entries. The only way to save their information is when they have a class assigned. 
+ - Update problem: If name for Anshuman needs to be updated, it has to be updated in all 3 rows containing Anshuman. Missing even a single row causes inconsistency(like assume that while updating in each row your pc crashed or powercut etc., then again our system doesn't start to update from where it was halted this leads to inconsistency). 
+ - Delete problem: If you delete the class with class_id = #4, you end up loosing all infomation about the instructor Ayush. 
+ - Insert problem: If a new instructor has been onboarded, there is no way to record their information. I cannot create a row with dummy entries in above table. The only way to save their information is when they have a class assigned. So till the class is assigned to the new instructor we will not be able to add a entry on his name in above table. And we cannot enter his/her details into the table with keeping the value under columns (class_id,topic) null/something as both can be used as Keys.
 
 Bad design. 
 As you can see, if you start with bad design, it causes tons of issues around performance, data integrity in the future. If you design your schema well, 50% of the battle is won. Let's see principles used for good schema design. 
 
 ## Normalisation
 
-Normalization is the process to eliminate data redundancy and enhance data integrity in the table. It is a systematic technique of decomposing tables to eliminate data redundancy (repetition) and undesirable characteristics like Insertion, Update, and Deletion anomalies.
+Normalization is the process to eliminate data redundancy(Most critical problems to handle in Schema Design) and enhance data integrity in the table. It is a systematic technique of decomposing tables to eliminate data redundancy (repetition) and undesirable characteristics like Insertion, Update, and Deletion anomalies or problems.
 
 To understand, if we are using the technique properly, various normalized forms are defined. Let's look at them one by one. 
 
@@ -82,7 +82,7 @@ To understand, if we are using the technique properly, various normalized forms 
 
 A table is referred to as being in its First Normal Form if atomicity of the table is 1.
 Here, atomicity states that a single cell cannot hold multiple values. It must hold only a single-valued attribute.
-The First normal form disallows the multi-valued attribute, composite attribute, and their combinations.
+The First normal form disallows the multi-valued attribute, composite attribute, and their combinations. So columns shouldn't be a list,set,map.
 
 So, example 1 above is not in 1-NF form. 
 However, if all your table columns contain atomic values, then your schema satisfies 1-NF form.
@@ -123,12 +123,12 @@ The requirements are as follows:
 3. Each batch of Scaler will have multiple students.
 4. Each batch has multiple classes.
 5. For each class, store the name, date and time, instructor of the class.
-6. For every student, we store their name, graduation year, University name, email, phone number. 
+6. For every student, we store their name, graduation year, University name, email, phone number and also attendance of each class they are present or watch. 
 7. Every student has a buddy, who is also a student.
-8. A student may move from one batch to another.
+8. A student may move from one batch to another, but can be part of multiple batches across their journey but at a current point they should belong to single batch.
 9. For each batch a student moves to, the date of starting is stored.
 10. Every student has a mentor.
-11. For every mentor, we store their name and current company name. 
+11. For every mentor, we store their name and current company name and no.of sessions they have taken. 
 12. Store information about all mentor sessions (time, duration, student, mentor, student rating, mentor rating).
 13. For every batch, store if it is an Academy-batch or a DSML-batch.
 
@@ -146,7 +146,8 @@ Steps:
 Name of a table should be plural, because it is storing multiple values. Eg. 'mentor_sessions'. Name of a column is singular and in snake-case.
 
 2. **Add primary key (id) and all the attributes** about that entity in all the tables created above.
-    
+    - So the point is everything that you have to store about the entity (which is not a relation with another entity) create that as a column of the table.
+
     Expectation with the primary key is that:
     - It should rarely change. Because indexing is done on PK (primary key) and the data on disk is sorted according to PK. Hence, these are updated with every change in primary key.
     - It should ideally be a datatype which is easy to sort and has smaller size. Have a separate integer/big integer column called 'id' as a primary key. For eg. twitter's algorithm ([Snowflake](https://blog.twitter.com/engineering/en_us/a/2010/announcing-snowflake)) to generate the key (id) for every tweet.
@@ -180,6 +181,10 @@ Name of a table should be plural, because it is storing multiple values. Eg. 'me
 
 3. **Representing relations:** For understanding this step, we need to look into cardinality.
 
+ - First thing is Define relation between which entitees
+ - Second define which relation between entitees
+ - Figure out the cardinality of relation
+
 ## Cardinality
 
 When two entities are related to each other, there is a questions: how many of one are related to how many of the other.
@@ -198,6 +203,11 @@ In cardinality, `1` means an entity can be associated to 1 instance at max, [0, 
 If you want to calculate relationship between `noun1` and `noun2`, then you can do the following:
  - *Step 1:* If you take one example of `noun2`, how many noun1 are related to this example object. Output : Either `1` or `many`
  - *Step 2:* If you take one example of `noun1`, how many noun2 are related to this example object. Output : Either `1` or `many`
+
+ - In short we can do the below practical steps:
+ 1. Go left to right putting 1 on left side , like how many classes present in 1 batch in scaler?
+ 2. Go right to left putting 1 on right side, like this 1 class present in how many batches in scaler?
+ 3. If there is 'm' on a side,put 'm' on that side.
  
 Take output from step1 (o1) and output from step2 (o2). o1:o2 is your relationship.
 
@@ -237,6 +247,8 @@ For 1:m and m:1 cardinalities, the `id` column of `1` side relation is included 
 
 For m:m cardinalities, create a new table called a **mapping table** or **lookup table** which stores the ids of both tables according to their associations.
 
+And the corner case is that Sparse Relation: where not every entity is related which is a column in that table is having a lot of nulls which is a memory waste. So if we find any such things in any of the above cardinality then build a Mapping table or lookup table for such columns.
+
 For example, for tables `orders` and `products` in previous quiz have m:m cardinality. So, we will create a new table `orders_products` to accomodate the relation between order ids and products ids.
 
 `orders_products`
@@ -251,5 +263,6 @@ For example, for tables `orders` and `products` in previous quiz have m:m cardin
 | 3        | 5          |
 | 4        | 5          |
 
+NOTE: Even Relation can have attributes like in case of storing starting date of join into a batch of a student it is nothing but we are storing the entire student past batch things so we keep that joining date as an attribute into the mapping table we created for student and batch as we have m:m relation.So in this case we always go for Mapping table to represent Relation can have attibutes irrespective of cardinality between entitees.
 
 We will cover case studies for the next class - applying the principles learnt. 
