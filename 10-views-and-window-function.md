@@ -244,9 +244,9 @@ which would yield:
 ```sql
 employees
 emp_no    |  department  | salary | dept_avg
-  1       |   Tech       | 60,000 |  55000
+  1       |   Tech       | 60,000 |  60000
   2       |   Tech       | 50,000 |  55000
-  4       |    HR        | 60,000 |  50000
+  4       |    HR        | 60,000 |  60000
   3       |    HR        | 40,000 |  50000
 ```
 
