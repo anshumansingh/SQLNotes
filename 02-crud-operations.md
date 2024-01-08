@@ -283,6 +283,19 @@ Think of IN to be like any other operator. Just that it allows comparison with m
 
 Hope you had a good break. Let's continue with the session. In this second part of the session, we are going to start the discussion by discussing about another important keyword in SQL, `BETWEEN`.
 
+### BETWEEN
+
+The "between" keyword in programming languages like SQL is often used to specify a range or condition for selecting data from a database. For instance, in SQL, you might use it like this:
+
+```sql
+SELECT * FROM products
+WHERE price BETWEEN 10 AND 50;
+```
+
+This query would retrieve all products with a price between $10 and $50.
+
+In general, the "between" keyword helps define a range or boundary for operations, whether it's in databases, programming, or mathematics.
+
 ### IS NULL Operator
 
 Now we are almost at the end of the discussion about different operators. Do you all remember how we store emptiess, that is, no value for a particular column for a particular row? We store it as `NULL`. Interestingly working with NULLs is a bit tricky. We cannot use the `=` operator to compare a column with `NULL`. Example:
